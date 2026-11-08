@@ -42,8 +42,12 @@ public class WechatPayConfig {
         this.wechat = wechat;
     }
 
+    /**
+     * 注意：方法名不能叫 wechatPayConfig —— 与本类名派生的 bean 名相同，
+     * 在 allow-bean-definition-overriding=false（默认）下会启动失败。
+     */
     @Bean
-    public RSAAutoCertificateConfig wechatPayConfig() {
+    public RSAAutoCertificateConfig wechatRsaAutoCertificateConfig() {
         WechatProperties.Pay pay = wechat.pay();
         String appId = wechat.miniapp() == null ? null : wechat.miniapp().appid();
         require(appId, "WX_USER_APPID");
